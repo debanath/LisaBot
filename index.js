@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-import { Client, GatewayIntentBits, PartialGroupDMChannel, Partials } from 'discord.js'
+import { Client, GatewayIntentBits, Partials } from 'discord.js'
 
 const client = new Client({
     intents: [
@@ -28,11 +28,19 @@ client.on('ready', () => {
 
 // this respond to a message
 client.on('messageCreate', async(message) => {
-    // console.log(message);
+    console.log(message);
     // console.log(message.content);
     // console.log(message.guild.name);
     // console.log(message.author.id);
     // console.log(message.content);
+
+    if (message.guildId === null ) {
+        // console.log(`${message.author.tag}(${message.author.id}): ${message.content}`);
+        // send the content of the message to the user to another channel
+        const channel = await client.channels.fetch('714420061091266621');
+        channel.send(`<@${message.author.id}>:\n \`\`\`\n${message.content}\n\`\`\``);
+    }
+
     
 
     // if the message contains mention to the bot
