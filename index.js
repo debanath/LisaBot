@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-import { Client, GatewayIntentBits, Partials } from 'discord.js'
+import { Client, GatewayIntentBits, Partials, ActivityType, Status, Activity, ActivityFlags } from 'discord.js'
 
 const client = new Client({
     intents: [
@@ -20,15 +20,24 @@ const client = new Client({
 });
 
 client.on('ready', () => {
+    client.user.setPresence({ activities: [
+    { 
+        name: './about',
+        type: ActivityType.Watching,
+    },
+],
+    status: "idle",
+ });
     console.log(`Logged in as ${client.user.username}!`);
 });
 
 
 
 
+
 // this respond to a message
 client.on('messageCreate', async(message) => {
-    console.log(message);
+    // console.log(message);
     // console.log(message.content);
     // console.log(message.guild.name);
     // console.log(message.author.id);
@@ -50,6 +59,10 @@ client.on('messageCreate', async(message) => {
 
     if (message.content==='ping') {
         message.channel.send(`Pong! ${client.ws.ping}ms`);
+    }
+
+    if (message.content==='./about') {
+        message.channel.send(`Hello <@${message.author.id}> I am a bot made by <@!${process.env.OWNER_ID}>`);
     }
 
 });
