@@ -37,16 +37,16 @@ client.on('ready', () => {
 
 // this respond to a message
 client.on('messageCreate', async(message) => {
-    // console.log(message);
-    // console.log(message.content);
-    // console.log(message.guild.name);
-    // console.log(message.author.id);
-    // console.log(message.content);
+    //tests
+        // console.log(message);
+        // console.log(message.content);
+        // console.log(message.guild.name);
+        // console.log(message.author.id);
+        // console.log(message.content);
+        
 
     if (message.guildId === null ) {
-        // console.log(`${message.author.tag}(${message.author.id}): ${message.content}`);
-        // send the content of the message to the user to another channel
-        const channel = await client.channels.fetch('714420061091266621');
+        const channel = await client.channels.fetch('714420061091266621'/*inset channel id of your choice here*/);
         channel.send(`<@${message.author.id}>:\n \`\`\`\n${message.content}\n\`\`\``);
     }
 
@@ -67,6 +67,7 @@ client.on('messageCreate', async(message) => {
 
 });
 
+//tests
 
 
 client.login(process.env.TOKEN);
